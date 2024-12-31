@@ -6,6 +6,12 @@ I'm passionate about cybersecurity and love tackling complex challenges through 
 
 [View my Resume (PDF)](https://docs.google.com/document/d/1_Tr8JZXErY1ghO1HYLVE6loLuaaSoAYwFukVyN9aCQ0/edit?usp=sharing)
 
+## Certifications
+
+*   **CompTIA Security+:** Expected March 2025
+*   **CompTIA Network+:** Expected March 2025
+*   **Google Professional Cybersecurity Certificate**
+
 
 ## ⚠️ Vulnerability Management Projects
 
