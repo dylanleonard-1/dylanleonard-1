@@ -23,7 +23,7 @@ I'm passionate about cybersecurity and love tackling complex challenges through 
 
 - **[Threat Hunting Scenario (Tor Browser Usage)](https://github.com/dylanleonard-1/threat-hunting-scenario-tor/blob/main/README.md)**
 
-## ![image](https://github.com/user-attachments/assets/bad36660-fe75-4f8b-8417-321f77a82508) Google cybersecurity works
+## ![google](https://github.com/user-attachments/assets/bcdb4b89-3294-4dc0-b787-132c97dab644) Google cybersecurity works
 
 <hr/>
 
