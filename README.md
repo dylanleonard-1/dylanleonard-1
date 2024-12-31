@@ -6,7 +6,7 @@ I'm passionate about cybersecurity and love tackling complex challenges through 
 ## ⚠️ Vulnerability Management Projects
 
 - **[Vulnerability Management Program Implementation](https://github.com/dylanleonard-1/vulnerability-management-program/tree/main)**
-- **[Programmatic Vulnerability Remediations (PowerShell and BASH)](https://github.com/dylanleonard-1/Programmatic-Vulnerability-Remediations)**
+- **[Programmatic Vulnerability Remediations (PowerShell and BASH)](https://github.com/dylanleonard-1/Programmatic-Vulnerability-Remediations/blob/main/README.md)**
 
 ## 🚨 Threat Hunting and Security Operations
 
