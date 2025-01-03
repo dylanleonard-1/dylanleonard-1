@@ -1,0 +1,51 @@
+PS C:\Users\dellybar> # Ensure you run PowerShell as Administrator
+>>
+>> $mountPoint = "C:"
+>> $pin = "512567"
+>>
+>> # Step 1: Remove existing TPM protector if it exists
+>> manage-bde -protectors -delete $mountPoint -Type TPM
+>>
+>> # Step 2: Add TPM and PIN protector
+>> # This will prompt you for a PIN (512567 in this case) when you reboot
+>> manage-bde -protectors -add $mountPoint -TPMAndPIN
+>>
+>> # Step 3: Verify the protectors to ensure TPM and PIN are correctly configured
+>> manage-bde -protectors -get $mountPoint
+>>
+>> Write-Host "BitLocker has been configured with TPM and PIN protector. Reboot your system to enter the PIN."
+>>
+BitLocker Drive Encryption: Configuration Tool version 10.0.19041
+Copyright (C) 2013 Microsoft Corporation. All rights reserved.
+
+Volume C: [Windows]
+Key Protectors of Type TPM
+
+ERROR: No key protectors found.
+BitLocker Drive Encryption: Configuration Tool version 10.0.19041
+Copyright (C) 2013 Microsoft Corporation. All rights reserved.
+
+Type the PIN to use to protect the volume:
+Confirm the PIN by typing it again:
+Key Protectors Added:
+
+    TPM And PIN:
+      ID: {F3BB873C-9237-4FF7-BB40-78E654C26F8D}
+      PCR Validation Profile:
+        7, 11
+        (Uses Secure Boot for integrity validation)
+
+BitLocker Drive Encryption: Configuration Tool version 10.0.19041
+Copyright (C) 2013 Microsoft Corporation. All rights reserved.
+
+Volume C: [Windows]
+All Key Protectors
+
+    TPM And PIN:
+      ID: {F3BB873C-9237-4FF7-BB40-78E654C26F8D}
+      PCR Validation Profile:
+        7, 11
+        (Uses Secure Boot for integrity validation)
+
+BitLocker has been configured with TPM and PIN protector. Reboot your system to enter the PIN.
+PS C:\Users\dellybar>
