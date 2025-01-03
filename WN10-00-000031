@@ -1,3 +1,31 @@
+<#
+.SYNOPSIS
+    This process involves configuring BitLocker on the C: drive by removing any existing TPM protector, adding a TPM and PIN protector, and setting a PIN (e.g., 512567) to secure the drive, with the PIN entered securely during system reboot.
+
+.NOTES
+    Author          : Dylan Leonard
+    LinkedIn        : https://www.linkedin.com/in/dylan-leonard-b0962825b/
+    GitHub          : https://github.com/dylanleonard-1
+    Date Created    : 2025-01-03
+    Last Modified   : 2025-01-03
+    Version         : 1.0
+    CVEs            : N/A
+    Plugin IDs      : N/A
+    STIG-ID         : WN10-00-000031
+
+.TESTED ON
+    Date(s) Tested  : 2025-01-03
+    Tested By       : Dylan Leonard
+    Systems Tested  : Windows 10
+    PowerShell Ver. : powershell ise
+
+.USAGE
+    Put any usage instructions here.
+    Example syntax:
+    PS C:\> 
+#>
+
+# YOUR CODE GOES HERE
 PS C:\Users\dellybar> # Ensure you run PowerShell as Administrator
 >>
 >> $mountPoint = "C:"
