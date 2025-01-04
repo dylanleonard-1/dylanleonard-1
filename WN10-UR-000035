@@ -1,0 +1,76 @@
+ <#
+.SYNOPSIS
+    This PowerShell script ensures that the maximum size of the Windows Application event log is at least 32768 KB (32 MB).
+
+.NOTES
+    Author          : Dylan Leonard
+    LinkedIn        : https://www.linkedin.com/in/dylan-leonard-b0962825b/
+    GitHub          : https://github.com/dylanleonard-1
+    Date Created    : 2025-01-03
+    Last Modified   : 2025-01-03
+    Version         : 1.0
+    CVEs            : N/A
+    Plugin IDs      : N/A
+    STIG-ID         : WN10-UR-000035
+
+.TESTED ON
+    Date(s) Tested  : 2025-01-03
+    Tested By       : Dylan Leonard
+    Systems Tested  : Windows 10
+    PowerShell Ver. : powershell ise
+
+.USAGE
+    Put any usage instructions here.
+    Example syntax:
+    PS C:\> .\__remediation_template(STIG-ID-WN10-AU-000500).ps1 
+#>
+
+# YOUR CODE GOES HERE
+# Define the policy name and the groups/accounts to include
+$PolicyName = "SeSystemtimePrivilege"
+$Accounts = @("Administrators", "LOCAL SERVICE", "NT SERVICE\autotimesvc")
+
+# Build the SIDs for the specified groups/accounts
+$SIDs = @(
+    "S-1-5-32-544", # Administrators
+    "S-1-5-19",     # LOCAL SERVICE
+    "S-1-5-80-1542" # NT SERVICE\autotimesvc
+)
+
+# Combine the SIDs into a comma-separated string
+$SIDString = $SIDs -join ","
+
+# Export the current security policy
+secedit /export /cfg "C:\Temp\secpol.cfg"
+
+# Define the configuration file path
+$configPath = "C:\Temp\secpol.cfg"
+
+# Check if the configuration file exists
+if (-not (Test-Path -Path $configPath)) {
+    Write-Error "Failed to export the security policy. Ensure you have the necessary permissions."
+    exit
+}
+
+# Read the configuration file
+$config = Get-Content $configPath
+
+# Update the policy value in the configuration file
+$config = $config -replace "(^.*$PolicyName.*)", "$PolicyName = $SIDString"
+
+# Save the updated configuration back to the file
+Set-Content $configPath $config
+
+# Apply the updated security policy
+secedit /configure /db "C:\Windows\security\Database\secedit.sdb" /cfg $configPath /areas USER_RIGHTS
+
+# Cleanup: Remove the temporary configuration file
+if (Test-Path -Path $configPath) {
+    Remove-Item -Path $configPath -Force
+} else {
+    Write-Warning "Temporary file '$configPath' does not exist and could not be removed."
+}
+
+# Output success message
+Write-Host "Policy 'Change the system time' has been successfully configured with the specified groups/accounts."
+ 
