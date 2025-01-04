@@ -1,3 +1,31 @@
+ <#
+.SYNOPSIS
+    This PowerShell script ensures that the maximum size of the Windows Application event log is at least 32768 KB (32 MB).
+
+.NOTES
+    Author          : Dylan Leonard
+    LinkedIn        : https://www.linkedin.com/in/dylan-leonard-b0962825b/
+    GitHub          : https://github.com/dylanleonard-1
+    Date Created    : 2025-04-03
+    Last Modified   : 2025-04-03
+    Version         : 1.0
+    CVEs            : N/A
+    Plugin IDs      : N/A
+    STIG-ID         : WN10-CC-000310
+
+.TESTED ON
+    Date(s) Tested  : 2025-04-03
+    Tested By       : Dylan Leonard
+    Systems Tested  : Windows 10
+    PowerShell Ver. : powershell ise
+
+.USAGE
+    Put any usage instructions here.
+    Example syntax:
+    PS C:\> .\__remediation_template(STIG-ID-WN10-AU-000500).ps1 
+#>
+
+# YOUR CODE GOES HERE
 # Define the registry path and policy name
 $RegPath = "HKLM:\Software\Policies\Microsoft\Windows\Installer"
 $PolicyName = "EnableUserControl"
