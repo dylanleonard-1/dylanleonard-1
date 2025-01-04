@@ -1,0 +1,82 @@
+ <#
+.SYNOPSIS
+    This PowerShell script ensures that the maximum size of the Windows Application event log is at least 32768 KB (32 MB).
+
+.NOTES
+    Author          : Dylan Leonard
+    LinkedIn        : https://www.linkedin.com/in/dylan-leonard-b0962825b/
+    GitHub          : https://github.com/dylanleonard-1
+    Date Created    : 2025-01-03
+    Last Modified   : 2025-01-03
+    Version         : 1.0
+    CVEs            : N/A
+    Plugin IDs      : N/A
+    STIG-ID         : WN10-UR-000090
+
+    Date(s) Tested  : 2025-01-03
+    Tested By       : Dylan Leonard
+    Systems Tested  : Windows 10
+    PowerShell Ver. : powershell ise
+
+.USAGE
+    Put any usage instructions here.
+    Example syntax:
+    PS C:\> .\__remediation_template(STIG-ID-WN10-AU-000500).ps1 
+#>
+
+# YOUR CODE GOES HERE
+# Define the target policy
+$PolicyName = "Deny log on through Remote Desktop Services"
+
+# Define the groups to assign for domain systems
+$DomainGroups = @("Enterprise Admins", "Domain Admins", "Local account")
+
+# Define the groups to assign for all systems
+$AllSystemsGroups = @("Guests")
+
+# Combine the groups based on the system type
+$AssignedGroups = $DomainGroups + $AllSystemsGroups
+
+# Build the SeSecurityPrivilege string
+$SeceditGroups = ($AssignedGroups -join ",").Replace(" ", "_")
+
+# Define the temporary configuration file path
+$configPath = "C:\Temp\secpol.cfg"
+
+# Ensure the Temp directory exists
+if (-not (Test-Path -Path "C:\Temp")) {
+    New-Item -ItemType Directory -Path "C:\Temp" -Force
+}
+
+# Export current security policy
+secedit /export /cfg $configPath
+
+# Verify the file was created successfully
+if (-not (Test-Path -Path $configPath)) {
+    Write-Error "Failed to export the security policy. Ensure you have the necessary permissions."
+    exit
+}
+
+# Read and modify the security policy configuration file
+$config = Get-Content $configPath
+
+# Find the policy and update its value
+$updatedConfig = $config -replace "(^.*$PolicyName.*)", "$PolicyName = $SeceditGroups"
+
+# Save the updated configuration
+Set-Content $configPath $updatedConfig
+
+# Import the modified security policy
+secedit /configure /db "C:\Windows\security\Database\secedit.sdb" /cfg $configPath /areas USER_RIGHTS
+
+# Cleanup: Remove the temporary configuration file if it exists
+if (Test-Path -Path $configPath) {
+    Remove-Item -Path $configPath -Force
+} else {
+    Write-Warning "Temporary file '$configPath' does not exist and could not be removed."
+}
+
+# Output the completion message
+Write-Host "Policy '$PolicyName' has been configured successfully."
+gpupdate /force
+ 
