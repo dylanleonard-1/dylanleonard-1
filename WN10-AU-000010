@@ -1,0 +1,42 @@
+ <#
+.SYNOPSIS
+    This PowerShell script ensures that the maximum size of the Windows Application event log is at least 32768 KB (32 MB).
+
+.NOTES
+    Author          : Dylan Leonard
+    LinkedIn        : https://www.linkedin.com/in/dylan-leonard-b0962825b/
+    GitHub          : https://github.com/dylanleonard-1
+    Date Created    : 2025-01-03
+    Last Modified   : 2025-01-03
+    Version         : 1.0
+    CVEs            : N/A
+    Plugin IDs      : N/A
+    STIG-ID         : WN10-AU-000010
+
+.TESTED ON
+    Date(s) Tested  : 2025-01-03
+    Tested By       : Dylan Leonard
+    Systems Tested  : Windows 10
+    PowerShell Ver. : powershell ise
+
+.USAGE
+    Put any usage instructions here.
+    Example syntax:
+    PS C:\> .\__remediation_template(STIG-ID-WN10-AU-000500).ps1 
+#>
+
+# YOUR CODE GOES HERE
+# Define the audit subcategory and desired audit setting
+$Subcategory = "Credential Validation"
+$AuditSetting = "Success"
+
+# Apply the audit policy setting using AuditPol
+$auditResult = AuditPol /set /subcategory:"$Subcategory" /success:enable
+
+# Check if the command was successful
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "Policy 'Audit Credential Validation' has been configured to log successes successfully."
+} else {
+    Write-Host "Failed to configure 'Audit Credential Validation' policy. Error code: $LASTEXITCODE"
+}
+gpupdate /force 
