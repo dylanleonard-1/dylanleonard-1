@@ -1,0 +1,34 @@
+# Define the registry path and policy details
+$RegPath = "HKLM:\Software\Policies\Microsoft\Windows\System"
+$PolicyName = "BootStartDriverInitializationPolicy"
+$PolicyValue = 7  # Good, Unknown, and Bad but Critical
+
+# Ensure the registry path exists
+if (-not (Test-Path -Path $RegPath)) {
+    Write-Host "Registry path does not exist. Creating it..."
+    New-Item -Path $RegPath -Force | Out-Null
+    Write-Host "Created registry path: $RegPath"
+} else {
+    Write-Host "Registry path already exists: $RegPath"
+}
+
+# Set the policy value
+Write-Host "Configuring 'Boot-Start Driver Initialization Policy'..."
+Set-ItemProperty -Path $RegPath -Name $PolicyName -Value $PolicyValue
+Write-Host "Policy 'Boot-Start Driver Initialization Policy' has been set to enforce 'Good, Unknown, and Bad but Critical'."
+
+# Refresh Group Policy
+Write-Host "Refreshing Group Policy to apply changes..."
+gpupdate /force | Out-Null
+Write-Host "Group Policy updated successfully."
+
+# Verify the configuration
+Write-Host "Verifying configuration..."
+try {
+    $ConfiguredValue = (Get-ItemProperty -Path $RegPath -Name $PolicyName).$PolicyName
+    Write-Host "Policy 'Boot-Start Driver Initialization Policy' is set to: $ConfiguredValue (`7 = Good, Unknown, and Bad but Critical`)."
+} catch {
+    Write-Error "Failed to retrieve policy value. Ensure the registry key exists."
+}
+
+Write-Host "`nConfiguration complete. Please verify compliance using your auditing tool."
