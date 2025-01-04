@@ -1,4 +1,4 @@
-<#
+ <#
 .SYNOPSIS
     This PowerShell script ensures that the maximum size of the Windows Application event log is at least 32768 KB (32 MB).
 
@@ -26,9 +26,11 @@
 #>
 
 # YOUR CODE GOES HERE
-# Define the registry paths and values for the policy
+# Define registry paths for both policy locations
 $RegPath1 = "HKLM:\Software\Policies\Microsoft\Edge"
 $RegPath2 = "HKLM:\Software\Policies\Microsoft\Windows\System"
+
+# Define the registry value name and value
 $RegName = "PreventSmartScreenPromptOverrideForFiles"
 $RegValue = 1  # 1 means Enabled
 
@@ -48,6 +50,6 @@ if (-not (Test-Path -Path $RegPath2)) {
 # Set the registry value for the second policy location
 Set-ItemProperty -Path $RegPath2 -Name $RegName -Value $RegValue
 
-# Output a message indicating the operation is complete
+# Output a success message
 Write-Host "Policy 'Prevent bypassing Windows Defender SmartScreen prompts for files' has been set to 'Enabled' in both locations."
-gpupdate /force
+gpupdate /force 
