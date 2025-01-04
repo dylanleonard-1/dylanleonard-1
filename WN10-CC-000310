@@ -1,0 +1,29 @@
+# Define the registry path and policy name
+$RegPath = "HKLM:\Software\Policies\Microsoft\Windows\Installer"
+$PolicyName = "EnableUserControl"
+$PolicyValue = 0  # Disabled
+
+# Ensure the registry path exists
+if (-not (Test-Path -Path $RegPath)) {
+    Write-Host "Registry path does not exist. Creating it..."
+    New-Item -Path $RegPath -Force | Out-Null
+    Write-Host "Created registry path: $RegPath"
+} else {
+    Write-Host "Registry path already exists: $RegPath"
+}
+
+# Set the policy value
+Write-Host "Configuring 'Allow user control over installs' policy..."
+Set-ItemProperty -Path $RegPath -Name $PolicyName -Value $PolicyValue
+Write-Host "Policy 'Allow user control over installs' has been set to Disabled."
+
+# Verify the configuration
+Write-Host "Verifying configuration..."
+try {
+    $ConfiguredValue = (Get-ItemProperty -Path $RegPath -Name $PolicyName).$PolicyName
+    Write-Host "Policy 'Allow user control over installs' is set to: $ConfiguredValue (`0 = Disabled`)."
+} catch {
+    Write-Error "Failed to retrieve policy value. Ensure the registry key exists."
+}
+
+Write-Host "`nConfiguration complete. Please verify compliance using your auditing tool."
