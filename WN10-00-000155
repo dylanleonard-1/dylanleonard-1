@@ -1,0 +1,23 @@
+ PS C:\Users\dellybar> Disable-WindowsOptionalFeature -Online -FeatureName MicrosoftWindowsPowerShellV2Root
+
+
+
+Path          : 
+Online        : True
+RestartNeeded : False
+
+
+
+
+PS C:\Users\dellybar> Get-WindowsOptionalFeature -Online | Where-Object { $_.FeatureName -like "*PowerShellV2*" }
+
+
+
+FeatureName : MicrosoftWindowsPowerShellV2Root
+State       : Disabled
+
+FeatureName : MicrosoftWindowsPowerShellV2
+State       : Disabled
+
+
+ 
