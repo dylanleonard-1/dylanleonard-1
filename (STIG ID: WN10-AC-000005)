@@ -1,0 +1,186 @@
+# Help Hub: Configuring Windows 10 Account Lockout Duration (STIG ID: WN10-AC-000005)
+
+## **Overview**
+This guide covers the process of configuring and verifying the **Account Lockout Duration** policy on Windows 10 to meet STIG requirements. This policy ensures that accounts are locked for at least 15 minutes after a certain number of failed login attempts.
+
+---
+
+## **Steps for Implementation**
+
+### **1. Ensure Script Runs with Administrator Privileges**
+Before running any script, verify that it is executed with elevated permissions (Administrator mode). Scripts that modify security settings require elevated privileges.
+
+### **2. Reset the Security Database**
+Resetting the security database ensures that existing configurations or corruption do not interfere with policy application.
+
+#### **Command**
+```powershell
+Rename-Item -Path "$env:windir\security\Database\secedit.sdb" -NewName "secedit.sdb.bak" -Force -ErrorAction SilentlyContinue
+secedit /configure /db "$env:windir\security\Database\secedit.sdb" /cfg "$env:windir\inf\defltbase.inf" /areas SECURITYPOLICY
+```
+
+---
+
+### **3. Create and Apply the Security Template**
+A security template specifies the desired policy settings, such as `LockoutDuration`.
+
+#### **Template Creation Script**
+```powershell
+$tempTemplatePath = "$env:TEMP\SecurityTemplate.inf"
+$lockoutDuration = 15
+
+@"
+[System Access]
+LockoutDuration = $lockoutDuration
+"@ | Out-File -FilePath $tempTemplatePath -Encoding ASCII
+```
+
+#### **Apply the Template**
+```powershell
+secedit /configure /db "$env:TEMP\SecurityDatabase.sdb" /cfg $tempTemplatePath /areas SECURITYPOLICY
+```
+
+---
+
+### **4. Force Group Policy Update**
+Ensure that all changes are applied immediately.
+
+#### **Command**
+```powershell
+gpupdate /force
+```
+
+---
+
+### **5. Verify the Configuration**
+Check that the `LockoutDuration` is correctly configured by exporting the current settings.
+
+#### **Verification Script**
+```powershell
+$tempExportPath = "$env:TEMP\SecurityExport.inf"
+
+secedit /export /cfg $tempExportPath /areas SECURITYPOLICY
+$exportedConfig = Get-Content -Path $tempExportPath
+
+# Check if LockoutDuration exists
+if ($exportedConfig -match "LockoutDuration\s*=\s*([0-9]+)") {
+    $currentValue = $matches[1]
+    if ($currentValue -ge $lockoutDuration) {
+        Write-Output "Verification successful: Lockout duration is set to $currentValue minute(s)."
+    } else {
+        Write-Warning "Verification failed: Lockout duration is $currentValue minute(s), which is less than $lockoutDuration."
+    }
+} else {
+    Write-Warning "Verification failed: Lockout duration setting not found in the exported configuration."
+}
+```
+
+---
+
+### **6. Handle Group Policy Overrides**
+If the `LockoutDuration` setting does not appear or changes are not applied, check for Group Policy overrides.
+
+#### **Check Applied Policies**
+```powershell
+gpresult /h "$env:TEMP\gpresult.html"
+Start-Process "$env:TEMP\gpresult.html"
+```
+
+#### **Verify in GPMC**
+1. Open **Group Policy Management Console** (`gpmc.msc`).
+2. Navigate to the applied GPO.
+3. Verify that the `Account Lockout Duration` is set to 15 minutes or greater.
+
+---
+
+### **7. Log All Steps**
+Maintain detailed logs for troubleshooting. The log file can be created as follows:
+
+#### **Log File Initialization**
+```powershell
+$logFilePath = "$env:TEMP\AccountLockoutPolicy.log"
+Write-Output "Log initialized." | Out-File -FilePath $logFilePath
+```
+
+#### **Add Entries to Log**
+```powershell
+Write-Output "Step description..." | Tee-Object -FilePath $logFilePath -Append
+```
+
+---
+
+### **8. Final Unified Script**
+Combine all the above steps into a single PowerShell script:
+
+#### **Unified Script**
+```powershell
+<#
+.SYNOPSIS
+Configure Windows 10 account lockout duration to 15 minutes or greater (STIG ID: WN10-AC-000005).
+
+.DESCRIPTION
+This script ensures compliance with STIG requirements by:
+1. Taking ownership of necessary directories and files.
+2. Overriding permissions to apply the policy.
+3. Verifying that the account lockout duration is correctly configured.
+
+.NOTES
+Author: [Your Name]
+Date: [Insert Date]
+STIG ID: WN10-AC-000005
+#>
+
+# Ensure script runs as Administrator
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Error "This script must be run as Administrator. Please restart PowerShell as Administrator and try again."
+    exit 1
+}
+
+# Reset Security Database
+Write-Output "Resetting the security database..."
+Rename-Item -Path "$env:windir\security\Database\secedit.sdb" -NewName "secedit.sdb.bak" -Force -ErrorAction SilentlyContinue
+secedit /configure /db "$env:windir\security\Database\secedit.sdb" /cfg "$env:windir\inf\defltbase.inf" /areas SECURITYPOLICY
+
+# Apply Account Lockout Policy
+$tempTemplatePath = "$env:TEMP\SecurityTemplate.inf"
+$lockoutDuration = 15
+@"
+[System Access]
+LockoutDuration = $lockoutDuration
+"@ | Out-File -FilePath $tempTemplatePath -Encoding ASCII
+
+secedit /configure /db "$env:TEMP\SecurityDatabase.sdb" /cfg $tempTemplatePath /areas SECURITYPOLICY
+
+# Force Group Policy Update
+gpupdate /force
+
+# Verify Configuration
+$tempExportPath = "$env:TEMP\SecurityExport.inf"
+secedit /export /cfg $tempExportPath /areas SECURITYPOLICY
+$exportedConfig = Get-Content -Path $tempExportPath
+
+if ($exportedConfig -match "LockoutDuration\s*=\s*([0-9]+)") {
+    $currentValue = $matches[1]
+    if ($currentValue -ge $lockoutDuration) {
+        Write-Output "Verification successful: Lockout duration is set to $currentValue minute(s)."
+    } else {
+        Write-Warning "Verification failed: Lockout duration is $currentValue minute(s), which is less than $lockoutDuration."
+    }
+} else {
+    Write-Warning "Verification failed: Lockout duration setting not found in the exported configuration."
+}
+```
+
+---
+
+## **Troubleshooting Tips**
+- Check `%windir%\security\logs\scesrv.log` for errors.
+- Ensure no Group Policy Object (GPO) overrides local settings.
+- Use `gpmc.msc` or `gpresult` to analyze active policies.
+
+---
+
+## **Additional Resources**
+- **Microsoft Docs**: [Local Group Policy Editor](https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/)
+- **STIG Viewer**: Use to validate settings against DISA STIG benchmarks.
+
