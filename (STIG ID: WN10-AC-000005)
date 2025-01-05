@@ -1,16 +1,87 @@
-# Help Hub: Configuring Windows 10 Account Lockout Duration (STIG ID: WN10-AC-000005)
+# SecEdit Command Overview and Usage Guide
 
-## **Overview**
-This guide covers the process of configuring and verifying the **Account Lockout Duration** policy on Windows 10 to meet STIG requirements. This policy ensures that accounts are locked for at least 15 minutes after a certain number of failed login attempts.
+## **Introduction**
+The **`secedit`** command is a powerful Windows tool for configuring security settings stored in a database. This guide explains its syntax, parameters, and practical use cases, including examples for common scenarios like applying security templates, resetting the security database, and troubleshooting.
+
+This guide also provides a step-by-step walkthrough to configure and verify the **Account Lockout Duration** policy on Windows 10 to meet **STIG ID: WN10-AC-000005** requirements. The policy ensures that accounts are locked for at least 15 minutes after a certain number of failed login attempts.
 
 ---
 
-## **Steps for Implementation**
+## **Syntax**
+```plaintext
+secedit /configure /db filename [/cfg filename] [/overwrite] [/areas area1 area2...] [/log filename] [/quiet]
+```
 
-### **1. Ensure Script Runs with Administrator Privileges**
-Before running any script, verify that it is executed with elevated permissions (Administrator mode). Scripts that modify security settings require elevated privileges.
+---
+
+## **Parameters**
+
+### **1. `/db filename`**
+Specifies the database used to perform the security configuration.
+- Example: `secedit.sdb`
+
+### **2. `/cfg filename`**
+Specifies a security template to import into the database prior to configuring the system.
+- Security templates can be created using the **Security Templates snap-in**.
+
+### **3. `/overwrite`**
+Clears the database before importing the template. Without this parameter:
+- Settings in the template are **merged** into the database.
+- If there are conflicts, **template settings take precedence**.
+
+### **4. `/areas area1 area2...`**
+Specifies the security areas to apply. If omitted, all areas in the database are applied.
+- Supported areas:
+  - **SECURITYPOLICY**: Account Policies, Audit Policies, Event Log Settings, Security Options.
+  - **GROUP_MGMT**: Restricted Groups.
+  - **USER_RIGHTS**: User Rights Assignment.
+  - **REGKEYS**: Registry Permissions.
+  - **FILESTORE**: File System Permissions.
+  - **SERVICES**: System Service Settings.
+
+### **5. `/log filename`**
+Specifies a file to log the status of the configuration process. If omitted:
+- Logs are written to `scesrv.log` in `%windir%\security\logs`.
+
+### **6. `/quiet`**
+Suppresses user prompts during configuration.
+
+---
+
+## **Examples**
+
+### **1. Apply a Security Template**
+Apply a security template to configure Account Policies:
+```plaintext
+secedit /configure /db secedit.sdb /cfg custom.inf /overwrite /areas SECURITYPOLICY /log secedit.log /quiet
+```
 
 ### **2. Reset the Security Database**
+Reset the security database to default settings:
+```plaintext
+secedit /configure /db secedit.sdb /cfg defltbase.inf /areas SECURITYPOLICY /log reset.log /quiet
+```
+
+### **3. Apply Multiple Areas**
+Apply settings for `SECURITYPOLICY` and `USER_RIGHTS`:
+```plaintext
+secedit /configure /db secedit.sdb /cfg custom.inf /areas SECURITYPOLICY USER_RIGHTS /log multiarea.log /quiet
+```
+
+### **4. Export Current Configuration**
+Export current security database settings to a file:
+```plaintext
+secedit /export /cfg export.inf /areas SECURITYPOLICY
+```
+
+---
+
+## **Step-by-Step Guide to Configure Account Lockout Policy**
+
+### **Step 1: Ensure Script Runs with Administrator Privileges**
+Before running any script, verify that it is executed with elevated permissions (Administrator mode). Scripts that modify security settings require elevated privileges.
+
+### **Step 2: Reset the Security Database**
 Resetting the security database ensures that existing configurations or corruption do not interfere with policy application.
 
 #### **Command**
@@ -19,9 +90,7 @@ Rename-Item -Path "$env:windir\security\Database\secedit.sdb" -NewName "secedit.
 secedit /configure /db "$env:windir\security\Database\secedit.sdb" /cfg "$env:windir\inf\defltbase.inf" /areas SECURITYPOLICY
 ```
 
----
-
-### **3. Create and Apply the Security Template**
+### **Step 3: Create and Apply the Security Template**
 A security template specifies the desired policy settings, such as `LockoutDuration`.
 
 #### **Template Creation Script**
@@ -40,9 +109,7 @@ LockoutDuration = $lockoutDuration
 secedit /configure /db "$env:TEMP\SecurityDatabase.sdb" /cfg $tempTemplatePath /areas SECURITYPOLICY
 ```
 
----
-
-### **4. Force Group Policy Update**
+### **Step 4: Force Group Policy Update**
 Ensure that all changes are applied immediately.
 
 #### **Command**
@@ -50,9 +117,7 @@ Ensure that all changes are applied immediately.
 gpupdate /force
 ```
 
----
-
-### **5. Verify the Configuration**
+### **Step 5: Verify the Configuration**
 Check that the `LockoutDuration` is correctly configured by exporting the current settings.
 
 #### **Verification Script**
@@ -75,9 +140,7 @@ if ($exportedConfig -match "LockoutDuration\s*=\s*([0-9]+)") {
 }
 ```
 
----
-
-### **6. Handle Group Policy Overrides**
+### **Step 6: Handle Group Policy Overrides**
 If the `LockoutDuration` setting does not appear or changes are not applied, check for Group Policy overrides.
 
 #### **Check Applied Policies**
@@ -91,9 +154,7 @@ Start-Process "$env:TEMP\gpresult.html"
 2. Navigate to the applied GPO.
 3. Verify that the `Account Lockout Duration` is set to 15 minutes or greater.
 
----
-
-### **7. Log All Steps**
+### **Step 7: Log All Steps**
 Maintain detailed logs for troubleshooting. The log file can be created as follows:
 
 #### **Log File Initialization**
@@ -107,12 +168,9 @@ Write-Output "Log initialized." | Out-File -FilePath $logFilePath
 Write-Output "Step description..." | Tee-Object -FilePath $logFilePath -Append
 ```
 
----
-
-### **8. Final Unified Script**
+### **Step 8: Unified Script**
 Combine all the above steps into a single PowerShell script:
 
-#### **Unified Script**
 ```powershell
 <#
 .SYNOPSIS
@@ -180,7 +238,7 @@ if ($exportedConfig -match "LockoutDuration\s*=\s*([0-9]+)") {
 
 ---
 
-## **Additional Resources**
+## **Resources**
 - **Microsoft Docs**: [Local Group Policy Editor](https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/)
 - **STIG Viewer**: Use to validate settings against DISA STIG benchmarks.
 
