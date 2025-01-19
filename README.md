@@ -4,7 +4,7 @@ I'm passionate about cybersecurity and love tackling complex challenges through 
 
 # Resume
 
-[View my Resume (PDF)](https://docs.google.com/document/d/1_Tr8JZXErY1ghO1HYLVE6loLuaaSoAYwFukVyN9aCQ0/edit?usp=sharing)
+[View my Resume (PDF)](https://docs.google.com/document/d/1ivIeRkX3MFkGQZ9JzDdo0kuJzu1QiQv7cr2V7XS2i7o/edit)
 
 ## Certifications
 
