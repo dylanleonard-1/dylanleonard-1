@@ -18,12 +18,12 @@ I'm passionate about cybersecurity and love tackling complex challenges through 
 
 - **[Vulnerability Management Program Implementation](https://github.com/dylanleonard-1/vulnerability-management-program/blob/main/README.md)**
 - **[Programmatic Vulnerability Remediations (PowerShell and BASH)](https://github.com/dylanleonard-1/Programmatic-Vulnerability-Remediations/blob/main/README.md)**
-- **[Operation Jackal Spear](https://github.com/dylanleonard-1/Operation-Jackal-Spear/blob/main/README.md)**
+
 
 ## 🚨 Threat Hunting and Security Operations
 
 - **[Threat Hunting Scenario (Tor Browser Usage)](https://github.com/dylanleonard-1/threat-hunting-scenario-tor/blob/main/README.md)**
-
+- **[Operation Jackal Spear](https://github.com/dylanleonard-1/Operation-Jackal-Spear/blob/main/README.md)**
 ## ![google](https://github.com/user-attachments/assets/bcdb4b89-3294-4dc0-b787-132c97dab644) Google cybersecurity Labs
 
 - **[google-certification-labs](https://github.com/dylanleonard-1/google-certification-labs-)**
