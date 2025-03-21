@@ -15,6 +15,8 @@ I'm passionate about cybersecurity and love tackling complex challenges through 
 
 <h2><img src="https://github.com/dylanleonard-1/dylanleonard-1/blob/main/IMG_9174.jpeg" width="32" style="vertical-align: middle;"/> Splunk Projects</h2>
 
+- **[Splunk Soar Mastering](https://github.com/dylanleonard-1/Splunk-Soar-mastering-/edit/main/README.md)**
+
 - **[Setting up Splunk SIEM / Fighting Off Attackers](https://github.com/dylanleonard-1/Setting-up-Splunk-fighting-off-attackers-/blob/main/README.md)**
 
 ## ⚠️ Vulnerability Management Projects
