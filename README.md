@@ -13,7 +13,8 @@ I'm passionate about cybersecurity and love tackling complex challenges through 
 *   **Google Professional Cybersecurity Certificate** 
  [see Certificate ](https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~JG0XRGVUQ8T0/CERTIFICATE_LANDING_PAGE~JG0XRGVUQ8T0.jpeg?fbclid=IwZXh0bgNhZW0CMTEAAR1jNrj7IAK3vNt1ENtLpohMhksQ798ZogYyC5mSCI-nJ7GLbmGVmV3FfK8_aem_ES4XecaMIEVDu77hv8lh-g)
 
-<h2><img src="https://github.com/dylanleonard-1/dylanleonard-1/blob/main/icons8-splunk-48.png" width="24"/> Splunk Projects</h2>
+<h2><img src="https://github.com/dylanleonard-1/dylanleonard-1/blob/main/icons8-splunk-48.png" width="32" style="vertical-align: middle;"/> Splunk Projects</h2>
+
 ## ⚠️ Vulnerability Management Projects
 
 - **[Vulnerability Management Program Implementation](https://github.com/dylanleonard-1/vulnerability-management-program/blob/main/README.md)**
