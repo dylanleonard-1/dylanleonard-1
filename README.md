@@ -1,13 +1,19 @@
-# <a href="https://www.linkedin.com/in/dylan-leonard-b0962825b">dylanleonard</a>'s IT & Cybersecurity Project Portfolio 🔐
+# <a href="https://www.linkedin.com/in/dylan-leonard-b0962825b">dylanleonard</a>'s IT & Cybersecurity Project Portfolio 🔐  
+*Cybersecurity Enthusiast | Builder of Next-Gen Cyber Training Environments*  
+
+---
 
 I'm passionate about cybersecurity and love tackling complex challenges through hands-on projects.  
 From vulnerability management to threat detection, these projects allow me to dive deep into the ever-evolving landscape of cybersecurity.  
 Please feel free to check them out and see the work I’ve put into enhancing security operations and processes!
 
+<p align="center">
+  <img src="https://img.shields.io/github/followers/dylanleonard-1?label=Follow%20Me&style=social" />
+  <img src="https://img.shields.io/github/last-commit/dylanleonard-1/dylanleonard-1" />
+  <img src="https://img.shields.io/github/repo-size/dylanleonard-1/dylanleonard-1" />
+</p>
+
 ---
-![GitHub followers](https://img.shields.io/github/followers/dylanleonard-1?label=Follow%20Me&style=social)
-![GitHub last commit](https://img.shields.io/github/last-commit/dylanleonard-1/dylanleonard-1)
-![GitHub repo size](https://img.shields.io/github/repo-size/dylanleonard-1/dylanleonard-1)
 
 ## 📄 Resume  
 👉 [**View my Resume (PDF)**](https://docs.google.com/document/d/10qvTvSFwF5MdG7QU4jK4qfuPEoGL1tHEne0bP6uCgqU/edit)
@@ -28,8 +34,7 @@ Please feel free to check them out and see the work I’ve put into enhancing se
 
 ---
 
-## <img src="https://github.com/dylanleonard-1/dylanleonard-1/blob/main/IMG_9174.jpeg" width="32" style="vertical-align: middle;"/> Splunk Projects  
-
+## 🛠️ Splunk Projects  
 - **[Splunk SOAR Mastering](https://github.com/dylanleonard-1/Splunk-Soar-mastering-/tree/main)**  
   *Hands-on SOAR playbooks, automation workflows, and real-time incident handling.*  
 
@@ -39,7 +44,6 @@ Please feel free to check them out and see the work I’ve put into enhancing se
 ---
 
 ## ⚠️ Vulnerability Management Projects  
-
 - **[Vulnerability Management Program Implementation](https://github.com/dylanleonard-1/vulnerability-management-program/blob/main/README.md)**  
   *Enterprise-grade vulnerability management strategy and deployment.*  
 
@@ -52,7 +56,6 @@ Please feel free to check them out and see the work I’ve put into enhancing se
 ---
 
 ## 🚨 Threat Hunting & Security Operations  
-
 - **[Threat Hunting Scenario (Tor Browser Usage)](https://github.com/dylanleonard-1/threat-hunting-scenario-tor/blob/main/README.md)**  
   *Threat detection of anonymized browsing patterns within enterprise logs.*  
 
@@ -61,19 +64,21 @@ Please feel free to check them out and see the work I’ve put into enhancing se
 
 ---
 
-## ![google](https://github.com/user-attachments/assets/bcdb4b89-3294-4dc0-b787-132c97dab644) Google Cybersecurity Labs  
-
+## 🌐 Google Cybersecurity Labs  
 - **[Google Certification Labs Repository](https://github.com/dylanleonard-1/google-certification-labs-)**  
   *Hands-on lab solutions demonstrating mastery of Google's professional cybersecurity curriculum.*
 
 ---
 
-## 🤳 Connect With Me  
-
-[<img align="left" alt="LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />](https://www.linkedin.com/in/dylan-leonard-b0962825b)  
+## 🤝 Connect With Me  
+[<img align="left" alt="LinkedIn" width="30px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />](https://www.linkedin.com/in/dylan-leonard-b0962825b)  
 
 <br/>
 
 ---
 
 > *This portfolio is constantly evolving — showcasing my passion, deep understanding, and hands-on expertise in both defensive and offensive cybersecurity operations.* 🚀  
+
+<p align="center">
+  <b>Built with passion by Dylan Leonard</b>
+</p>
