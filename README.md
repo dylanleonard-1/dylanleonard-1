@@ -5,6 +5,9 @@ From vulnerability management to threat detection, these projects allow me to di
 Please feel free to check them out and see the work I’ve put into enhancing security operations and processes!
 
 ---
+![GitHub followers](https://img.shields.io/github/followers/dylanleonard-1?label=Follow%20Me&style=social)
+![GitHub last commit](https://img.shields.io/github/last-commit/dylanleonard-1/dylanleonard-1)
+![GitHub repo size](https://img.shields.io/github/repo-size/dylanleonard-1/dylanleonard-1)
 
 ## 📄 Resume  
 👉 [**View my Resume (PDF)**](https://docs.google.com/document/d/10qvTvSFwF5MdG7QU4jK4qfuPEoGL1tHEne0bP6uCgqU/edit)
