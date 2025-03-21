@@ -16,7 +16,7 @@ Please feel free to check them out and see the work I’ve put into enhancing se
 ---
 
 ## 📄 Resume  
-👉 [**View my Resume (PDF)**](https://docs.google.com/document/d/10qvTvSFwF5MdG7QU4jK4qfuPEoGL1tHEne0bP6uCgqU/edit)
+👉 [**View my Resume (PDF)**](https://docs.google.com/document/d/17MlVXQ-PA19AdOLvp6JFeW5Ni7lREvZU1QSUqw7Nq-Y/edit)
 
 ---
 
