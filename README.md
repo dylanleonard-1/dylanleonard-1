@@ -59,14 +59,17 @@ Please feel free to check them out and see the work I’ve put into enhancing se
 - **[Threat Hunting Scenario (Tor Browser Usage)](https://github.com/dylanleonard-1/threat-hunting-scenario-tor/blob/main/README.md)**  
   *Threat detection of anonymized browsing patterns within enterprise logs.*
 
+
+- **[Operation Jackal Spear](https://github.com/dylanleonard-1/Operation-Jackal-Spear/blob/main/README.md)**  
+  *Advanced threat hunting scenario simulating APT detection techniques.*
+
+---
+
 ## 📊 Power BI Cybersecurity Dashboards
 
 - [Power BI Security Dashboard Portfolio](LINK_TO_REPO_OR_FOLDER)  
   **Interactive dashboards for SOC alert triage, IAM monitoring, and compliance posture tracking.**  
   Built in Power BI with real-world simulated log data and DAX-driven interactivity for SOC teams, IAM engineers, and compliance leads.
-
-- **[Operation Jackal Spear](https://github.com/dylanleonard-1/Operation-Jackal-Spear/blob/main/README.md)**  
-  *Advanced threat hunting scenario simulating APT detection techniques.*
 
 ---
 
