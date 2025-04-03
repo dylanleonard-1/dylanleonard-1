@@ -67,7 +67,7 @@ Please feel free to check them out and see the work I’ve put into enhancing se
 
 ## 📊 Power BI Cybersecurity Dashboards
 
-- [Power BI Security Dashboard Portfolio](LINK_TO_REPO_OR_FOLDER)  
+- [Power BI Security Dashboard Portfolio](https://github.com/dylanleonard-1/powerbi-cybersecurity-dashboards)  
   **Interactive dashboards for SOC alert triage, IAM monitoring, and compliance posture tracking.**  
   Built in Power BI with real-world simulated log data and DAX-driven interactivity for SOC teams, IAM engineers, and compliance leads.
 
