@@ -23,7 +23,7 @@ Please feel free to check them out and see the work I’ve put into enhancing se
 ## 🎓 Certifications  
 - **CompTIA Security+:** Expected March 2025  
 - **CompTIA Network+:** Expected March 2025  
-- **Google Professional Cybersecurity Certificate** — [**See Certificate**](https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~JG0XRGVUQ8T0/CERTIFICATE_LANDING_PAGE~JG0XRGVUQ8T0.jpeg?fbclid=IwZXh0bgNhZW0CMTEAAR1jNrj7IAK3vNt1ENtLpohMhksQ798ZogYyC5mSCI-nJ7GLbmGVmV3FfK8_aem_ES4XecaMIEVDu77hv8lh-g)
+- **Google Professional Cybersecurity Certificate** — [**See Certificate**](https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~JG0XRGVUQ8T0/CERTIFICATE_LANDING_PAGE~JG0XRGVUQ8T0.jpeg)
 
 ---
 
@@ -31,6 +31,32 @@ Please feel free to check them out and see the work I’ve put into enhancing se
 > The Future of Real-World Cybersecurity Training & Competitive Cyber War Gaming  
 
 👉 [**Explore CyberSec Warfare Project Here**](https://github.com/dylanleonard-1/CyberSec-Warfare-The-Future-of-Real-World-Cybersecurity-Training-Competitive-Cyber-War-Gaming/blob/main/README.md)
+
+---
+
+## 🧩 ProcessUnity 3rd-Party Risk Simulation Lab
+
+> A full-scale vendor risk simulation system built from scratch — mirrors **real ProcessUnity workflows**, complete with enrichment, automation, Excel tagging, and Power BI dashboards.
+
+🔗 [**Explore the Full Project →**](https://github.com/dylanleonard-1/ProcessUnity-3rd-Party-vendor-risk-lab)
+
+<p align="center">
+  <img src="https://github.com/dylanleonard-1/vendor-risk-lab/blob/main/Screenshots/ChatGPT%20Image%20Apr%203%2C%202025%2C%2007_14_47%20PM.png?raw=true" width="700"/>
+</p>
+
+### ⚙️ What It Does
+- ✅ Simulates third-party vulnerability injects w/ CVEs, patch gaps, exposure risks
+- 🧠 Built-in logic for duplicate entries, missing contacts, outdated patches, SLA violations
+- 🧮 Excel + DAX practice built-in: escalation tagging, conditional formatting, VLOOKUPs
+- 📊 Power BI dashboards for region risk, SLA timelines, vendor heatmaps
+- 📡 Splunk + SOAR integration for log simulation + alerting
+
+### 🎯 Who It’s For
+SOC analysts, vendor risk managers, red teamers, and anyone training for GRC tools like **ProcessUnity**, **ServiceNow VRM**, or **OneTrust**.
+
+### 📽️ Live Demo (Coming Soon)
+A walkthrough GIF showing:
+`Injects → Excel Triaging → Power BI Dashboards → SOAR Playbook → Alignment with Real ProcessUnity Screens`
 
 ---
 
@@ -58,7 +84,6 @@ Please feel free to check them out and see the work I’ve put into enhancing se
 ## 🚨 Threat Hunting & Security Operations  
 - **[Threat Hunting Scenario (Tor Browser Usage)](https://github.com/dylanleonard-1/threat-hunting-scenario-tor/blob/main/README.md)**  
   *Threat detection of anonymized browsing patterns within enterprise logs.*
-
 
 - **[Operation Jackal Spear](https://github.com/dylanleonard-1/Operation-Jackal-Spear/blob/main/README.md)**  
   *Advanced threat hunting scenario simulating APT detection techniques.*
